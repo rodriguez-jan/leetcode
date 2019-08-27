@@ -1,10 +1,12 @@
 class Solution(object):
     def relativeSortArray(self, arr1, arr2):
         """
+        Execute a bucket sort method to relative sort problem
         :type arr1: List[int]
         :type arr2: List[int]
         :rtype: List[int]
         """
+
         dict_sort = {}
         list_total = []
         list_diffs = []
