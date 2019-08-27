@@ -5,14 +5,22 @@ class Solution(object):
         :type arr2: List[int]
         :rtype: List[int]
         """
-        temp = []
-        arr1.sort()
+        dict_sort = {}
+        list_total = []
+        list_diffs = []
         for i in arr2:
-            for j in arr1:
-                if(j==i):
-                    temp.append(j)
+            dict_sort[i] = 0
 
-        for end in arr1:
-            if end not in arr2:
-                temp.append(end)
-        return temp
+        for i in arr1:
+            if i in dict_sort:
+                dict_sort[i] +=1
+            else:
+                list_diffs.append(i)
+        list_diffs.sort()
+
+        for i in arr2:
+            list_total.extend([i] * dict_sort[i])
+
+        list_total.extend(list_diffs)
+
+        return  list_total
