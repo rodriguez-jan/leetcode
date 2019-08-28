@@ -1,0 +1,2 @@
+When working with trees, dont jump to coding solution right away. Think about iterative vs recursive solultioins
+first
