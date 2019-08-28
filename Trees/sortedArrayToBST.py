@@ -17,8 +17,8 @@ class Solution(object):
             mid = (left_index + right_index) / 2
             temp = TreeNode(nums[mid])
             #Start adding children recursively
-            temp.left = recursiveConvert(mid - 1)
-            temp.right = recursiveConvert(right_index)
+            temp.left = recursiveConvert(left_index,mid - 1)
+            temp.right = recursiveConvert(mid+1,right_index)
             return temp
 
         return recursiveConvert(0, len(nums) - 1)
