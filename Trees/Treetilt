@@ -1,0 +1,48 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def findTilt(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        total_tilt = 0
+
+        def getNodeTotal(node):
+            if not node:
+                return 0
+            # Add up left subtree
+            left_val = getNodeTotal(node.left)
+            # Add up right subtree
+            right_val = getNodeTotal(node.right)
+            total = left_val + right_val + node.val
+            return total
+
+        def recursiveTilt(node, total_tilt):
+            if not node:
+                return 0
+            # Get tilt of left subtree
+            left_tilt = recursiveTilt(node.left, total_tilt)
+            # Get tilt of right subtree
+            right_tilt = recursiveTilt(node.right, total_tilt)
+
+            left_total = getNodeTotal(node.left)
+            right_total = getNodeTotal(node.right)
+
+            curr_tilt = abs(left_total - right_total)
+            total_tilt += left_tilt
+            total_tilt += right_tilt
+            total_tilt += curr_tilt
+
+            return total_tilt
+
+        return recursiveTilt(root, total_tilt)
+
+
+
+
