@@ -1,0 +1,36 @@
+'''
+
+                            Online Python Interpreter.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+
+def solution(x, y):
+    # Your code here
+    def solvable(t,q):
+        if(t<1 or q<1):
+            return False
+        if(t==1 and q>2):
+            return False
+        if(q==1 and t>2):
+            return False
+        return True
+    
+    small = min(int(x),int(y))
+    big = max(int(x),int(y))
+    div = big/small
+    generations = div
+    M = div
+    F = small
+    
+    while(solvable(M,F)):
+        if(M>F):
+            M = M-F
+            generations+=1
+        else:
+            F=F-M
+            generations+=1
+    
+    return generations
+print(solution("1","2"))
