@@ -1,0 +1,43 @@
+class Solution:
+    def restoreIpAddresses(self, s: str) -> List[str]:
+        #constraints
+        #test cases
+        #talk out soln from test cases
+        
+        #question will be solved with backtracking because we have to generate all solutions and check if their valid
+        #is valid will check if the current octet is valid
+        #big thing is thinking about how we store our current solution
+        #add soln to backtrack call
+        #remove it to keep going in for loop
+        #will dfs first for a possible solution
+        
+        #if we cast the str to an int it gets rid of leading 0's
+        #101023
+        #1
+        #10
+        #101
+        res = []        
+        #store ips in a list instead of a string and appending
+        def backtrack(start_index,curr_string):
+            if start_index == len(s):
+                if len(curr_string) == 4:
+                    res.append(".".join(curr_string))
+                    return
+            if len(curr_string) > 4:
+                return
+            for index in range(start_index, start_index+3):
+                    curr_ip = s[start_index:index+1]
+                    if curr_ip and int(curr_ip) <256 and len(curr_ip) == len(str(int(curr_ip))):
+                        curr_string = curr_string + [s[start_index:index+1]]
+                        backtrack(index+1,curr_string)
+                        curr_string.pop()
+            return
+        
+        backtrack(0,[])
+        return res
+            
+        
+        
+        
+        
+        
